@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height initial-scale=1 minimum-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title>Chess</title>
+</head>
+<body style="background:black;" class="chess-bgd bg-dark">
+
+    <div class="row layout-row">
+
+
+        <div id="controls-column" class="col m-0 p-0 bg-dark">
+        <div class="container-fluid w-100 h-100 ml-2 p-0 bg-dark">
+            
+            <h4 style="margin-bottom:-7px; padding-top:8px;" id="title" class="text-light text-center title-container"> <span class="hr-show">&lt;</span> 2-Player Chess <span class="hr-show">&gt;</span></h4>
+        <div class="text-light " id="notation-float" ><!--Start DIV-->
+         
+            
+            <div id="notation-container" class="container col">
+            
+            <hr class="text-light hr-hide">
+            <div class="container" id="notation-inner">
+                <div class="row">
+                    <ol id="white-moves" class="col">
+                        
+                    </ol>
+                    <ol id="black-moves" class="col">
+
+                    </ol>
+                </div>
+            </div>
+
+            <div class="notationstartgame-wrapper">
+            <div class="notation-navbar-container">
+            <div class="row justify-content-around notation-navbar">
+                <div id="click-left" class="notation-controls"><i  class="fas fa-chevron-left"></i></div>
+                <button id="reset-board" class="btn btn-dark">Reset</button>
+                <div id="click-right" class="notation-controls"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            </div>
+            <hr class="hr-hide">
+            <div id="start-game-container">
+                <h3 style="display:none;"  class="text-center">New Game</h3>
+                <div class="container-fluid">
+                    <div id="start-join" class="row justify-content-center">
+                    <button id="start-game" class="btn btn-block btn-success w-40">Start Game</button>
+                    <button id="join-game-btn" class="btn btn-block btn-danger w-40">Join Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+
+
+
+            
+            <div id="game-controls-container" style="display:none" class="container-fluid col">
+
+
+                <div id="usernames" class="row justify-content-around 1">
+                    <span class="user"><i id="user-icon-w" class="fas fa-chess-king icon-w"></i> <span id="user1"> User 1</span>  <i id="user1circle" class="fas fa-circle online"></i></span>
+                    <span class="user"></i><i id="user-icon-b" class="fas fa-chess-king icon-b"></i><span id="user2" class="fadebetween"> Waiting for user...</span>  <i id="user2circle" class="fas fa-circle offline"></i></span>
+                </div>
+
+
+
+
+
+                <div id="chat-and-buttons">
+                <div id="room-game-buttons-container">
+                <div class="row justify-content-around gamebuttons">
+                    <button id="resign" disabled class="btn-danger btn flex-grow-1">Resign</button>
+                    <button id="leave-room" disabled class="btn-secondary btn flex-grow-1">Leave Room</button>
+                    <button id="offer-draw" disabled class="btn-success btn flex-grow-1">Offer Draw</button>
+                </div>
+                <div class="list-group a">
+                <a href="#!" id="copylink" class="list-group-item list-group-item-action list-group-item-dark">
+                    <div id="room-name-container" class="row justify-content-between align-content-center">
+                        <span>Room: <span id="gameroom-id-code"></span></span> <i class="fas fa-copy mr-2 copy-icon"></i>
+                    </div>
+                </a>
+                </div>
+                </div>
+
+
+               
+                
+            <div id="chat-options-container" class="container-fluid">
+                    <br class="hr-hide">
+                <h3 style="display: none;" class="text-light text-center">Chat</h3>
+               
+                <div id="chat-options" class="row justify-content-around">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="disable-chat">
+                        <label class="custom-control-label" for="disable-chat">Disable Chat</label>
+                    </div>
+                </div>
+                <hr class="hr-hide">
+
+                <!--this is the chatbox-->
+                <ul class="chatbox">
+                    <!--stuff goes here-->
+                </ul>
+
+                <form action="" id="chat">
+                    <div class="input-group chat-input-container a">
+                        <div class="input-group-prepend a">
+                        <button id="send-chat-btn" class="btn btn-success" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                        </div>
+                        <input type="text" id="chat-btn" class="form-control" placeholder="Chat..." aria-label="" aria-describedby="basic-addon1">
+                    </div>
+                </form>
+                </div>
+            </div>
+
+
+
+            </div>
+            
+
+
+
+                </div><!--END DIV-->
+            </div>
+        </div> 
+        
+        <div id="gameboard-column" class="col m-0 p-0 bg-dark ">
+        
+
+        <div id="game-area" class="bg-dark col">
+        <div id="clock" class="bg-dark text-light"> 
+            
+           
+            <div id="blackclockrow" class="row align-items-center clocks">
+                <span class="col"><i id="flip-board" class="fas fa-sync flip-icon"></i></span>
+                <h2 id="blackclock" class="col-6 text-center clock-text">5:00</h2>
+                <span class="col"></span>
+            </div>
+            
+        </div>
+        <div class="loading-screen-modal hidden">
+            <div id="expand-class" class="expand">
+            <h1 id="rotation-class" class="rotation"><i class="fas fa-spinner fadebetween loading-spinner"></i></h1>
+            </div>
+        </div>
+        <div id="chessboard">
+            <div class="game-column">
+                <div id="A8" class="square w"></div>
+                <div id="A7" class="square b"></div>
+                <div id="A6" class="square w"></div>
+                <div id="A5" class="square b"></div>
+                <div id="A4" class="square w"></div>
+                <div id="A3" class="square b"></div>
+                <div id="A2" class="square w"></div>
+                <div id="A1" class="square b"></div>
+            </div>
+            <div class="game-column">
+                <div id="B8" class="square b"></div>
+                <div id="B7" class="square w"></div>
+                <div id="B6" class="square b"></div>
+                <div id="B5" class="square w"></div>
+                <div id="B4" class="square b"></div>
+                <div id="B3" class="square w"></div>
+                <div id="B2" class="square b"></div>
+                <div id="B1" class="square w"></div>
+            </div>
+            <div class="game-column">
+                <div id="C8" class="square w"></div>
+                <div id="C7" class="square b"></div>
+                <div id="C6" class="square w"></div>
+                <div id="C5" class="square b"></div>
+                <div id="C4" class="square w"></div>
+                <div id="C3" class="square b"></div>
+                <div id="C2" class="square w"></div>
+                <div id="C1" class="square b"></div>
+            </div>
+            <div class="game-column">
+                <div id="D8" class="square b"></div>
+                <div id="D7" class="square w"></div>
+                <div id="D6" class="square b"></div>
+                <div id="D5" class="square w"></div>
+                <div id="D4" class="square b"></div>
+                <div id="D3" class="square w"></div>
+                <div id="D2" class="square b"></div>
+                <div id="D1" class="square w"></div>
+            </div>
+            <div class="game-column">
+                <div id="E8" class="square w"></div>
+                <div id="E7" class="square b"></div>
+                <div id="E6" class="square w"></div>
+                <div id="E5" class="square b"></div>
+                <div id="E4" class="square w"></div>
+                <div id="E3" class="square b"></div>
+                <div id="E2" class="square w"></div>
+                <div id="E1" class="square b"></div>
+            </div>
+            <div class="game-column">
+                <div id="F8" class="square b"></div>
+                <div id="F7" class="square w"></div>
+                <div id="F6" class="square b"></div>
+                <div id="F5" class="square w"></div>
+                <div id="F4" class="square b"></div>
+                <div id="F3" class="square w"></div>
+                <div id="F2" class="square b"></div>
+                <div id="F1" class="square w"></div>
+            </div>
+            <div class="game-column">
+                <div id="G8" class="square w"></div>
+                <div id="G7" class="square b"></div>
+                <div id="G6" class="square w"></div>
+                <div id="G5" class="square b"></div>
+                <div id="G4" class="square w"></div>
+                <div id="G3" class="square b"></div>
+                <div id="G2" class="square w"></div>
+                <div id="G1" class="square b"></div>
+            </div>
+            <div class="game-column">
+                <div id="H8" class="square b"></div>
+                <div id="H7" class="square w"></div>
+                <div id="H6" class="square b"></div>
+                <div id="H5" class="square w"></div>
+                <div id="H4" class="square b"></div>
+                <div id="H3" class="square w"></div>
+                <div id="H2" class="square b"></div>
+                <div id="H1" class="square w"></div>
+            </div>
+           
+        </div>
+        <div id="whiteclockrow" class="row text-center align-items-center text-light clocks  ">
+            <span class="col"></span>
+            <span class="col">
+                <h2 id="whiteclock" class="clock-text">4:59</h2>
+            </span>
+            <div class="col"></div>
+        
+      
+
+       
+        </div>
+
+        
+        <div class="col">
+        </div>
+    </div>
+
+        
+   
+
+        
+       
+        
+    </div>
+    </div>
+    <div id="queen-pawn-modal">
+        <h3 id="select-piece">Select Your Piece:</h3>
+        <hr>
+        <div class="pawn-container">
+            <i class="fas fa-chess-rook chesspieceG"></i>
+            <i class="fas fa-chess-knight chesspieceG"></i>
+            <i class="fas fa-chess-bishop chesspieceG"></i>
+            <i class="fas fa-chess-queen chesspieceG"></i>
+        </div>
+        
+    </div>
+
+     <!-- 
+    START NEW GAME, ENTER USERNAME
+    -->
+
+
+    <div id="modalusername" class="modal-box hide">
+        <div class="container-fluid" id="username-container">
+            <div class="row justify-content-around">
+            <div class="col"></div>
+            <div class="col">
+                <div class="username-container animate-up">
+                    <div class="row enter-your-name">
+                        <i class="fas fa-times-circle x-button flex-grow-0 "></i>
+                        <h3 class="text-light text-center flex-grow-2 ">Enter your name here:</h3>
+                        <i class="fas fa-times-circle x-button flex-grow-0 hidden"></i>
+                    </div>
+                
+                <br>
+                <form action="" class="submit-form" id="username">
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <button type="submit" class="btn btn-success" type="button">Submit</button>
+                        </div>
+                        <input type="text" id="user-input" class="form-control" placeholder="Enter your name..." aria-label="" aria-describedby="basic-addon1">
+                      </div>
+
+
+                      <div class="btn-group btn-group-toggle buttons-group" data-toggle="buttons">
+                        <label class="btn btn-secondary w-100">
+                          <input type="radio" name="time-controls" value="5" autocomplete="off"> 5:00
+                        </label>
+                        <label class="btn btn-secondary active w-100">
+                          <input type="radio" name="time-controls" value="10" autocomplete="off" checked> 10:00
+                        </label>
+                        <label class="btn btn-secondary w-100">
+                            <input type="radio" name="time-controls" value="15" autocomplete="off"> 15:00
+                          </label>
+                          <label class="btn btn-secondary w-100">
+                            <input type="radio" name="time-controls" value="20" autocomplete="off"> 20:00
+                          </label>
+                          <label class="btn btn-secondary w-100">
+                            <input type="radio" name="time-controls" value="30" autocomplete="off"> 30:00
+                          </label>      
+                      </div>
+
+
+                      <div class="row justify-content-around mt-4 switch">
+                      <span class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="addFiveSecs">
+                        <label class="custom-control-label text-light" for="addFiveSecs">(+5")</label>
+                        </span>
+                        <span class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" checked id="playAsWhite">
+                            <label class="custom-control-label text-light" for="playAsWhite">Play as White</label>
+                        </span>
+                    </div>
+
+
+                </form>
+            </div>
+            
+            </div>
+            <div class="col"></div>
+        </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 
+    YOUR OPPONENT HAS OFFERED A DRAW    
+    -->
+
+    <div id="modaldraw" class="modal-box">
+        <div class="container-fluid" id="username-container">
+            <div class="row justify-content-around">
+           
+            <div class="col">
+                <div class="animate-up username-container d">
+                    <div class="row enter-your-name">
+                        <i class="fas fa-times-circle x-button flex-grow-0 "></i>
+                        <h3 class="text-light text-center flex-grow-2 ">Your opponent has offered a draw.</h3>
+                        <i class="fas fa-times-circle x-button flex-grow-0 hidden"></i>
+                    </div>
+                
+                <br>
+                <form action="" id="username">
+                    <div class="row">
+                        <input type="button" id="acceptdraw" class="btn btn-success w-50" value="Accept">
+                        <input type="button" id="declinedraw" class="btn btn-danger w-50" value="Decline">
+                    </div>
+                    
+                </form>
+            </div>
+            
+            </div>
+           
+        </div>
+        </div>
+    </div>
+
+     <!-- 
+    YOU HAVE RESIGNED. LEAVE ROOM, REQUEST REMATCH
+    -->
+
+<div id="modal-rematch-user" class="modal-box hide">
+<div class="container-fluid" id="modal-rematch-container">
+    <div class="row justify-content-around">
+        <div class="col"></div>
+    <div class="col">
+        <div class="username-container animate-up">
+            <div class="row enter-your-name">
+                <i class="fas fa-times-circle x-button flex-grow-0 "></i>
+                <h3 id="gameover" class="text-light text-center flex-grow-1 ">You have resigned.</h3>
+                <i class="fas fa-times-circle x-button flex-grow-0 hidden"></i>
+            </div>
+            <br>
+        <form action="" class="submit-form" id="rematch-params">
+            <div class="row leave-rematch-container">
+                <button type="submit" id="rematch" class="btn btn-block btn-success" value="">Rematch</button>
+                <button type="button" id="leave-gameroom" class="btn btn-block btn-danger" onclick="location.reload();" value="Leave Gameroom">Leave Room</button>
+            </div>
+          
+              <div class="btn-group btn-group-toggle buttons-group" data-toggle="buttons">
+                <label class="btn btn-secondary w-100">
+                  <input type="radio" name="time-controls-rematch" value="5" autocomplete="off"> 5:00
+                </label>
+                <label class="btn btn-secondary active w-100">
+                  <input type="radio" name="time-controls-rematch" value="10" autocomplete="off" checked> 10:00
+                </label>
+                <label class="btn btn-secondary w-100">
+                    <input type="radio" name="time-controls-rematch" value="15" autocomplete="off"> 15:00
+                  </label>
+                  <label class="btn btn-secondary w-100">
+                    <input type="radio" name="time-controls-rematch" value="20" autocomplete="off"> 20:00
+                  </label>
+                  <label class="btn btn-secondary w-100">
+                    <input type="radio" name="time-controls-rematch" value="30" autocomplete="off"> 30:00
+                  </label>
+                  
+              </div>
+              <div class="row justify-content-around switch mt-4">
+              <span class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="addFiveSecs-rematch">
+                <label class="custom-control-label text-light" for="addFiveSecs-rematch">(+5")</label>
+                </span>
+                <span class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" checked id="playAsWhite-rematch">
+                    <label class="custom-control-label text-light" for="playAsWhite-rematch">Play as White</label>
+                </span>
+            </div>
+        </form>
+    </div>
+    
+    </div>
+    <div class="col"></div>
+</div>
+</div>
+</div>
+
+       <!-- 
+    YOUR OPPONENT HAS RESIGNED. LEAVE ROOM, REQUEST REMATCH
+    -->
+
+
+    <div id="modalresignopponent" class="modal-box hide">
+        <div class="container-fluid" id="resign-container-opp">
+            <div class="row justify-content-around">
+            <div class="col"></div>
+            <div class="col">
+                <div class="username-container">
+                    <div class="row enter-your-name">
+                        <i class="fas fa-times-circle x-button flex-grow-0 "></i>
+                        <h1 class="text-light text-center flex-grow-1">Your opponent has resigned.</h1>
+                        <i class="fas fa-times-circle x-button flex-grow-0 hidden"></i>
+                    </div>
+                    <br>
+                <form action="" id="">
+                    <div class="row leave-rematch-container">
+                        <input type="button" id="rematch-opp" class="btn btn-success btn-block" value="Rematch">
+                        <input type="button" id="leave-gameroom-opp" onclick="location.reload();" class="btn btn-danger btn-block" value="Leave Room">
+                    </div>
+                </form>
+            </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 
+    JOIN GAME, ENTER ROOM NUMBER
+    -->
+
+
+    <div id="modaljoingame" class="modal-box hide">
+        <div class="container-fluid" id="join-container">
+            <div class="row justify-content-around">
+              
+                <div class="col">
+                    <div class="animate-up username-container a">
+                        <div class="row enter-your-name">
+                            <i class="fas fa-times-circle x-button flex-grow-0"></i>
+                            <h3 class="text-light text-center flex-grow-2">Enter your name:</h3>
+                            <i class="fas fa-times-circle x-button hidden flex-grow-0"></i>
+                        </div>
+                        <form action="" id="join-game">
+                            <div class="input-group">
+                            
+                                <input type="text" id="name-join-game" class="form-control" placeholder="Enter your name..." aria-label="" aria-describedby="basic-addon1">
+                            </div>
+                            <br>
+                        <h3 class="text-light text-center">Gameroom ID Code:</h3>
+                    
+                            <div class="input-group">
+                                <input type="text" id="game-id-code" class="form-control" placeholder="Gameroom ID Code..." aria-label="" aria-describedby="basic-addon1">
+                            </div>
+                            <button class="btn btn-success btn-block mb-5">Enter</button>
+                        </form>
+                        </div>
+                        
+                   
+                    <div id="username-errormsg"></div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+   
+
+
+       <!-- 
+    YOUR OPPONENT HAS REQUESTED A REMATCH
+    -->
+
+
+    <div id="reqest-rematch-modal" class="modal-box hide">
+        <div class="container-fluid" id="resign-container-user">
+            <div class="row justify-content-around">
+            <div class="col"></div>
+            <div class="col">
+                <div class="username-container">
+                    <div class="row">
+                        <i class="fas fa-times-circle x-button flex-grow-0 "></i>
+                        <br>
+                        <h3 class="text-light text-center flex-grow-1 mt-3">Your opponent has requested a rematch.</h3>
+                        <i class="fas fa-times-circle x-button flex-grow-0 hidden"></i>
+                    </div>
+           
+                <form action="" id="">
+                    <div class="row">
+                        <input type="button" id="accept-rematch" class="btn btn-success w-50" value="Accept">
+                        <input type="button" id="reject-rematch" class="btn btn-danger w-50" value="Reject">
+                    </div>
+                    
+                </form>
+            </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        </div>
+    </div>
+    
+<script src="/socket.io/socket.io.js"></script>
+ 
+    <script>
+
+        var scale = 'scale(1)';
+        document.body.style.webkitTransform =  scale;    // Chrome, Opera, Safari
+        document.body.style.msTransform =   scale;       // IE 9
+        document.body.style.transform = scale;  
+
+    
+        let gameH,clockH, boardColH,winH,winW,scaleRatio,scaleDiff,width,colHeight,height,VW
+        let nFloat = document.getElementById("notation-float")
+
+        function sizingRatios(){
+           height = window.innerHeight-(2*(document.getElementById("blackclockrow").offsetHeight))
+           colHeight = document.getElementById("gameboard-column").offsetHeight-(2*(document.getElementById("blackclockrow").offsetHeight))
+           width = window.innerHeight-document.getElementById("controls-column").offsetWidth
+           VW = window.innerWidth
+           
+            
+            if(width>=970){
+
+                nFloat.classList.remove("shift-left")
+                nFloat.classList.remove("shift-right")
+
+                gameH=height;
+                $(".chesspieceW").css({
+               "font-size":`${gameH/11.5}px`
+                })
+                $(".chesspieceB").css({
+                    "font-size":`${gameH/11.5}px`
+                })
+            }else{
+                gameH=colHeight
+                if(colHeight>VW){
+                    gameH=VW
+                }
+    
+            }
+            $(".chesspieceW").css({
+                "font-size":`${gameH/11.5}px`
+                    })
+            $(".chesspieceB").css({
+                        "font-size":`${gameH/11.5}px`
+                    })
+          
+           
+           $("#chessboard").css({
+               "height":`${gameH}px`,
+               "width":`${gameH}px`,
+           })
+           $("#blackclockrow").css({
+               "width":`${gameH}px`,
+           })
+           $("#whiteclockrow").css({
+               "width":`${gameH}px`,
+           })
+           $(".loading-screen-modal").css({
+               "width":`${gameH}px`,
+               "height":`${gameH}px`
+           })
+           
+        }
+        sizingRatios()
+        
+        window.addEventListener("resize", ()=>{
+            sizingRatios()
+        })
+
+        /*
+        $(".hr-show").on('click',()=>{
+            
+            if(!nFloat.classList.contains("shift-left")){
+                nFloat.classList.add("shift-left")
+                nFloat.classList.remove("shift-right")
+            }else{
+                nFloat.classList.add("shift-right")
+                nFloat.classList.remove("shift-left")
+            }
+        })
+        */
+
+
+        //GAME STATES (must be reset manually again)
+        let promote=false
+        let whiteToMove = true
+        let checkmate = false
+        let check = false
+        let stalemate = false
+        let wKingMoved = false
+        let bKingMoved = false
+        let a1RookMoved = false
+        let a8RookMoved = false
+        let h1RookMoved = false
+        let h8RookMoved = false
+        let takes=""
+        let capturedPcsB = []
+        let capturedPcsW = []
+        let moveObj = []
+        let moveCount = 0
+        let moveCountInc = moveCount
+        let enpassant_true=false
+        let moveCountInit=moveCount
+        let gameNotes=[]
+        let resigned=false
+        let disonnected=false
+        //Server & player states
+        let thisUserID=""
+        let clockOn=false
+        let timer
+        let msgCt=0
+        let chatOn=true
+        let activeGame=false
+        let gameRoomIdCode=""
+        let rotated=false
+        let playerOneIsWhite=true
+        let playerOneID=""
+        let player2exists
+        //Clock Settings
+
+        let minsW=0
+        let secsW=0
+        let incW=0
+        let zeroW=0
+        let minsB=0
+        let secsB=0
+        let zeroB=0
+        let incB=0
+   
+       
+
+        const socket = io();
+        ////////////////////////////////////////////////////////
+        //SOCKET.IO CRAP
+
+        ///FIX FROM HERE-------------------
+
+        $("#leave-room").on('click',()=>{
+                location.reload(); 
+        })
+
+        
+        $("#flip-board").on('click',()=>{
+            if(rotated){
+                rotated=false
+                rotateBack()
+            }
+            else{
+                rotated=true
+                rotate()
+            }
+
+        })
+
+
+
+
+        //REMATCH CODES//////////////////////////
+
+        socket.on('request-rematch',(id)=>{
+            $(".modal-box").hide()
+            $("#reqest-rematch-modal").toggle()
+            $("#accept-rematch").on('click',()=>{
+                socket.emit("rematch-response",true,id)
+                $("#reqest-rematch-modal").hide()
+            
+            })
+            $("#reject-rematch").on('click',()=>{
+                socket.emit("rematch-response",false,id)
+                $("#reqest-rematch-modal").hide()
+            })
+        })
+
+        
+
+
+        $("#rematch-params").submit(e=>{
+            e.preventDefault()
+            socket.emit('request-rematch',thisUserID)
+            $("#modal-rematch-user").toggle()
+
+            //$("#game-controls-container").toggle()
+            let radios = document.getElementsByName("time-controls-rematch")
+            let radioVal
+            let plus5Val = Boolean(document.getElementById("addFiveSecs-rematch").checked)
+            let colorVal = Boolean(document.getElementById("playAsWhite-rematch").checked)
+            radios.forEach(radio=>{
+                if(radio.checked){
+                  
+                    radioVal=radio.value
+                    
+                }
+            })
+
+            let requestingId
+            let rematchProm = new Promise(async (resolve,reject)=>{
+                let confirm = await new Promise(resolve=>{
+                    socket.on("rematch-response",(val,id)=>{
+                    requestingId=id
+                    console.log("requestingId: ",requestingId)
+                    resolve(val)
+                    })
+                })
+                if(confirm){resolve("Response Accepted")}
+                else{reject("Response Declined")}
+            })
+
+            rematchProm.then(()=>{
+            //socket.emit("newroom",$("#user1").val())
+            socket.emit('game-options',radioVal,plus5Val,colorVal,true,requestingId)
+            console.log("requestingId: ",requestingId)
+            $("#user-input").val("")
+            $("#modalusername").addClass("animate-out")
+            msgCt++
+            
+            removePieceClicks()
+            })
+
+            rematchProm.catch(()=>{
+                $(".chatbox").append(`<li style="color:red;">***Rematch rejected.</li>`)
+            })
+        })
+       
+
+        //IN GAME CONTROLS//////////////////////////////
+
+        $(".x-button").on('click',()=>{
+            $(".modal-box").hide()
+        })
+
+        $("#join-game-btn").on('click',()=>{
+            $("#modaljoingame").toggle()
+        })
+
+
+        //YOU JOIN GAME, ENTER ROOM NUMBER
+
+        
+
+       
+            
+        
+
+        $("#join-game").submit(e=>{
+            e.preventDefault()
+            socket.emit("validate",$("#game-id-code").val())
+            //requests validation, awaits answer
+            
+            let validProm=new Promise(async (resolve,reject)=>{
+                let validate = await new Promise(resolve=>{
+                    socket.on('validate',val=>{
+                        resolve(val)
+                    })
+                })
+                if(validate){resolve("success")}
+                else {reject("Invalid Room Number")}
+                
+            })
+
+            console.log(validProm)
+
+            validProm.then((success,err)=>{
+            if(success){
+                console.log(success)
+                $("#game-controls-container").toggle()
+                $("#start-game-container").toggle()
+                if(window.innerWidth<970){
+                    nFloat.classList.add("shift-left")
+                }
+                $("#modaljoingame").toggle()
+                socket.emit('join',$("#game-id-code").val(),$("#name-join-game").val(),false,moveCount)
+            }else if(err){
+                alert(err)
+                console.log(err)
+                $("#game-id-code").val(`<span style="color:red">${err}</span>`)
+            }
+            })
+            validProm.catch(err=>{
+                $("#username-errormsg").html(`<div class="shakeLR" style="color:red; text-align:center; margin-top:-40px;">${err}</div>`)
+            })
+        })
+        
+        function copyClick(){
+        $("#copylink").on('click',()=>{
+            const el = document.createElement('textarea');
+            el.value = gameRoomIdCode;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            msgCt++
+            $(".chatbox").append(`<li style="color:red;" id='msg${msgCt}'><em>***Link copied to clipboard!</em></li>  `)
+            let elem = document.querySelector('.chatbox');
+            elem.scrollTop = elem.scrollHeight;
+            $(`#msg${msgCt}`).addClass("fadein")
+            $("#copylink").off('click')
+            setTimeout(()=>{
+                $(`#msg${msgCt}`).remove()
+                copyClick()
+            },1000)
+        })
+        }
+        copyClick()
+
+        $("#start-game").on('click',()=>{
+            $("#modalusername").toggle()
+            $("#modalusername").addClass("animate-up")
+        })
+       
+        socket.on('this-user',id=>{
+            thisUserID=id
+        })
+      
+
+        //PLAYER 1 starts a game
+        socket.on('username',username=>{
+            setPosition()
+            socket.emit("send-current-position",moveObj,moveCount)
+            msgCt++
+            let maxlength=10
+            let diff=username.length-maxlength
+            let user=username.substring(0, username.length-diff);
+            $("#user1").html(user)
+            $("#leave-room").attr("disabled",false)
+            $(".hr-show").on('click',()=>{
+            
+            if(!nFloat.classList.contains("shift-left")){
+                nFloat.classList.add("shift-left")
+                nFloat.classList.remove("shift-right")
+            }else{
+                nFloat.classList.add("shift-right")
+                nFloat.classList.remove("shift-left")
+            }
+            })
+            $(".chatbox").append(`<li id='msg${msgCt}'><i class="fas fa-circle online"></i> <strong>${username}</strong> has connected!</li>`)
+        })
+
+        //PLAYER 2 joins a game
+        socket.on('username2',(name,opponent,room,rematch,rejoin,moveObjServer,moveCountServer)=>{
+                moveObj=moveObjServer
+                moveCount=moveCountServer
+                console.log("moveObj:",moveObj,"moveCount:",moveCount)
+            setPosition(false,true)
+           
+        
+            socket.emit("game-options")
+            activeGame=true
+            clockOn=true
+            player2exists=true;
+            
+            let maxlength=10
+            let diff=name.length-maxlength
+            let user=name.substring(0, name.length-diff);
+            $("#user2").removeClass("fadebetween")
+            $("#user2circle")
+                .removeClass("offline")
+                .addClass("online")
+            $("#user1").removeClass("fadebetween")
+            $("#user1circle")
+                .removeClass("offline")
+                .addClass("online")
+            $("#reset-board").prop("disabled",true)
+            $(".notation-controls").prop("disabled",true)
+            if(rematch){
+                msgCt++
+                $(".chatbox").append(`<li id='msg${msgCt}'>***REMATCH ACCEPTED.</li>`)
+                $(`msg${msgCt}`).css("color","red")
+            }else{
+                msgCt++
+                $(".chatbox").append(`<li id='msg${msgCt}'><i class="fas fa-circle online"></i> <strong>${name}</strong> has connected!</li>`)
+            }
+            if(!rejoin){
+                $("#user2").html(user)
+                $("#user1").html(opponent)
+            }else{
+                $("#user1").html(user)
+                $("#user2").html(opponent)
+            }
+            
+            $(".loading-screen-modal").addClass("hidden")
+            $("#gameroom-id-code").html(room)
+            $("#resign").prop("disabled",false)
+            $("#offer-draw").prop("disabled",false)
+            $("#leave-room").prop("disabled",false)
+            assignPieceClicks()
+        })
+        
+        socket.on("stopclicks",()=>{
+            removePieceClicks()
+        })
+
+        socket.on("rotate",()=>{
+            rotate()
+            rotated=true
+        })
+
+        $("#chat").submit(e=>{
+            e.preventDefault()
+            socket.emit("chat-msg",$("#chat-btn").val())
+            $("#chat-btn").val("")
+        })
+        $("#username").submit(e=>{
+            e.preventDefault()
+            $("#game-controls-container").toggle()
+            $("#start-game-container").toggle()
+            if(window.innerWidth<970){
+                    nFloat.classList.add("shift-left")
+                }
+            let radios = document.getElementsByName("time-controls")
+            let radioVal
+            let plus5Val = Boolean(document.getElementById("addFiveSecs").checked)
+            //let plus5Val = Boolean($("#addFiveSecs").attr("checked"))
+            let colorVal = Boolean(document.getElementById("playAsWhite").checked)
+            radios.forEach(radio=>{
+                if(radio.checked){
+                    radioVal=radio.value
+                    
+                }
+            })
+            socket.emit("newroom",$("#user-input").val())
+            socket.emit('game-options',radioVal,plus5Val,colorVal,false)
+            $("#user-input").val("")
+            $("#modalusername").addClass("animate-out")
+            removePieceClicks()
+        })
+
+        
+
+        //GAME OPTIONS, ALSO HAS REMATCH-RESET FUNCTIONS
+
+        socket.on("game-options",(radioVal,plus5Val,colorVal,firstID,rematch,reqId)=>{
+
+            console.log(
+                "radioVal: ",
+                radioVal,
+                "plus5Val: ",
+                plus5Val,
+                "colorVal: ",
+                colorVal,
+                "firstID: ",
+                firstID,
+                "rematch: ",
+                rematch,
+
+            )
+            if(moveCount<1|rematch){
+                secsW=0
+                secsB=0
+                zeroB=0
+                zeroW=0
+                minsW=parseInt(radioVal)
+                minsB=parseInt(radioVal)
+            }else{
+                socket.on("get-current-time",(minsB_s,minsW_s,secsB_s,secsW_s,zeroB_s,zeroW_s)=>{
+                    minsB=minsB_s
+                    minsW=minsW_s
+                    secsB=secsB_s
+                    secsW=secsW_s
+                    zeroB=zeroB_s
+                    zeroW=zeroW_s
+                })
+
+            }
+           
+            clearTimeout(timer)
+            if(plus5Val){
+                incW=5
+                incB=5
+            }
+
+            playerOneIsWhite = colorVal
+            playerOneID = firstID
+            let firstPlayerWhite=colorVal
+
+            
+            if(rematch){
+                setPosition()
+                promote=false
+                whiteToMove = true
+                checkmate = false
+                check = false
+                stalemate = false
+                wKingMoved = false
+                bKingMoved = false
+                a1RookMoved = false
+                a8RookMoved = false
+                h1RookMoved = false
+                h8RookMoved = false
+                takes=""
+                capturedPcsB = []
+                capturedPcsW = []
+                moveObj = []
+                moveCount = 0
+                moveCountInc = moveCount
+                enpassant_true=false
+                moveCountInit=moveCount
+                gameNotes=[]
+                resigned=false
+                disonnected=false
+
+                console.log(
+                    "thisUserID ",
+                    thisUserID,
+                    "reqId: ",
+                    reqId,
+                    "firstID: ",
+                    firstID
+                )
+               if(reqId){
+                   if(reqId!=firstID){
+                       if(firstPlayerWhite){
+                           firstPlayerWhite=false
+                       }else{
+                           firstPlayerWhite=true
+                       }
+                   }
+               }
+            }
+            
+            
+
+            //colorVal means "is player 1 one" white if true, black if false
+
+            //If the current client is player 1
+            if(thisUserID==firstID){
+                if(firstPlayerWhite){
+                    rotate()
+                    rotateBack()
+                    if(rematch){
+                        assignPieceClicks()
+                        setPosition()
+                    }
+                }else{
+                    rotateBack()
+                    rotate()
+                    switchIcons()
+                }
+            //if the current client is player 2
+            }else{
+                if(!firstPlayerWhite){
+                    rotate()
+                    rotateBack()
+                    switchIcons()
+                    if(rematch){
+                        assignPieceClicks()
+                        setPosition()
+                    }
+                    
+                }else{
+                    rotateBack()
+                    rotate()
+                    
+                }
+
+            }
+            
+            if(!clockOn){
+                $(".loading-screen-modal")
+                .removeClass("hidden")
+                .addClass("fadein")
+
+            }else{
+                $(".loading-screen-modal")
+                .addClass("hidden")
+                .removeClass("fadein")
+            }
+
+            if(rematch){
+            $(".chatbox").append(`<li id='msg${msgCt}'>***REMATCH ACCEPTED.</li>`)
+            $(`msg${msgCt}`).css("color","red")
+            $("#resign").prop("disabled",false)
+            $("#offer-draw").prop("disabled",false)
+            $("#leave-room").prop("disabled",false)
+            }
+            
+            return clocks()
+        })
+
+        socket.on("newroom",room=>{
+            $("#gameroom-id-code").html(room)
+            gameRoomIdCode=room
+        })
+
+        //PLAYER LEAVES A ROOM:
+        socket.on('p-disconnected',(pName,firstPlayerGone)=>{
+            clearInterval(timer)
+
+            if(!firstPlayerGone){
+                $("#user2")
+                    .addClass('fadebetween')
+                    .html("Waiting for reconnection...")
+                $("#user2circle")
+                    .removeClass("online")
+                    .addClass("offline")
+            }else{
+                $("#user1")
+                    .addClass('fadebetween')
+                    .html("Waiting for reconnection...")
+                $("#user1circle")
+                    .removeClass("online")
+                    .addClass("offline")
+            }
+
+            
+            $(".loading-screen-modal")
+                .removeClass("hidden")
+                .addClass("fadein")
+            $("#resign").prop("disabled",true)
+            $("#offer-draw").prop("disabled",true)
+            $("#leave-room").prop("disabled",false)
+            msgCt++
+            $(".chatbox").append(`<li id="msg${msgCt}"><i id="user1circle" class="fas fa-circle offline"></i> <strong>${pName}</strong> has disconnected.</li>`)
+        })
+
+        //when the host leaves the room:
+        socket.on('h-disconnected',()=>{
+
+        })
+    
+        socket.on("chat-msg",(msg,name)=>{
+            msgCt++
+            $(".chatbox").append(`<li id='msg${msgCt}'><strong>${name}:</strong> ${msg}</li>  `)
+            let elem = document.querySelector('.chatbox');
+                    elem.scrollTop = elem.scrollHeight;
+            $(`#msg${msgCt}`).addClass("fadein")
+            
+        })
+
+        $("#offer-draw").on('click',()=>{
+            let diff = moveCount-moveCountInit
+            moveCountInit=moveCount
+            if(diff<5){$(".chatbox").append('<p style="color:red;"><em>***You must wait 5 moves between offers.</em></p>')}
+            else{
+            socket.emit('offer-draw')
+            $(".chatbox").append('<li style="color:red;"><em>***You have offered a draw.</em></li>')
+            let elem = document.querySelector('.chatbox');
+                    elem.scrollTop = elem.scrollHeight;
+            }
+        })
+
+        $("#acceptdraw").on('click',()=>{
+            $("#modaldraw").addClass("animate-out")
+            socket.emit('drawn-game')
+
+        })
+
+        socket.on('drawn-game',()=>{
+            clearInterval(timer)
+            msgCt++
+            $(".chatbox").append(`<li style="color:red;" id='msg${msgCt}'>***1/2 - 1/2</li>  `)
+            let elem = document.querySelector('.chatbox');
+                    elem.scrollTop = elem.scrollHeight;
+            $(`#msg${msgCt}`).addClass("fadein")
+            removePieceClicks()
+            $("#modal-rematch-user").toggle()
+            $("#modal-rematch-user").addClass('animate-up')
+            $("#gameover").html("Draw.")
+
+        })
+
+        function checkmateModal(){
+                removePieceClicks()
+                $("#modal-rematch-user").show()
+                $("#modal-rematch-user").addClass('animate-up')
+                $("#gameover").html("Checkmate.")
+                
+            }
+
+        socket.on("checkmate",()=>{
+            checkmateModal()
+        })
+
+
+        socket.on('offer-draw',()=>{
+            $("#modaldraw").css("display","unset")
+            $("#modaldraw").addClass("animate-up")
+        })
+
+        $("#resign").on('click',()=>{
+            resigned=true
+            $("#modal-rematch-user").toggle()
+            $("#modal-rematch-user").addClass('animate-up')
+            $("#gameover").html("You have resigned.")
+
+            if(thisUserID==playerOneID&&playerOneIsWhite){
+                $(".chatbox").append(`<li style="color:red;">***0-1: White has resigned</li>`)}
+            else if(thisUserID==playerOneID&&!playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***1-0: Black has resigned</li>`)}
+            else if(thisUserID!=playerOneID&&!playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***0-1: White has resigned</li>`)}
+            else if(thisUserID!=playerOneID&&playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***1-0: Black has resigned</li>`)}
+
+
+            removePieceClicks()
+            clearTimeout(timer)
+            document.getElementById('whiteclock').innerHTML="."
+            document.getElementById('whiteclock').firstChild.style="color:white;"
+            document.getElementById('blackclock').innerHTML="."
+            document.getElementById('blackclock').firstChild.style="color:white;"
+            $("#resign").prop("disabled",true)
+            $("#offer-draw").prop("disabled",true)
+            socket.emit('resign')
+        })
+
+        socket.on('resign',()=>{
+            
+            resigned=false
+            $("#modal-rematch-user").toggle()
+            $("#modal-rematch-user").addClass('animate-up')
+            $("#gameover").html("Your opponent has resigned.")
+            
+            if(thisUserID!=playerOneID&&playerOneIsWhite){
+                $(".chatbox").append(`<li style="color:red;">***0-1: White has resigned</li>`)}
+            else if(thisUserID!=playerOneID&&!playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***1-0: Black has resigned</li>`)}
+            else if(thisUserID==playerOneID&&!playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***0-1: White has resigned</li>`)}
+            else if(thisUserID==playerOneID&&playerOneIsWhite) {
+                $(".chatbox").append(`<li style="color:red;">***1-0: Black has resigned</li>`)}
+            
+            removePieceClicks()
+            clearTimeout(timer)
+            document.getElementById('whiteclock').innerHTML="."
+            document.getElementById('whiteclock').firstChild.style="color:white;"
+            document.getElementById('blackclock').innerHTML="."
+            document.getElementById('blackclock').firstChild.style="color:white;"
+            $("#resign").prop("disabled",true)
+            $("#offer-draw").prop("disabled",true)
+        })
+        
+        socket.on('decline-draw',()=>{
+            $(".chatbox").append('<p style="color:red;"><em>***Your opponent has declined a draw.</em></p>')
+            let elem = document.querySelector('.chatbox');
+                    elem.scrollTop = elem.scrollHeight;
+        })
+       
+        $("#declinedraw").on('click',()=>{
+            socket.emit("decline-draw")
+            $("#modaldraw").addClass("animate-out")
+        })
+
+        socket.on('move',(piece,pos,color,simulation,atk,server,move,pawnPromote)=>{
+            findLegalMoves(piece,pos,color,simulation,atk,true,move,pawnPromote)
+        })
+
+        $("#reset-board").on('click',()=>{
+            setPosition(true)
+            rotateBack()
+        })
+
+        $("#chess-clock").on('change',()=>{
+            if(document.getElementById("chess-clock").checked==true){
+                clockOn=true
+                clocks()
+            }else{
+                clockOn=false
+                clocks()
+            }
+            
+        })
+
+        $("#disable-chat").on("change",()=>{
+            if(document.getElementById("disable-chat").checked==true){
+                $("#send-chat-btn").prop("disabled",true)
+                $("#chat-btn").prop("disabled",true)
+                socket.emit("disable-chat")
+            }else{ 
+                $("#send-chat-btn").prop("disabled",false)
+                $("#chat-btn").prop("disabled",false)
+                socket.emit("enable-chat")
+            }
+        })
+        
+       
+
+        socket.on("disable-chat",()=>{
+            $("#disable-chat").prop("disabled",true)
+            $("#send-chat-btn").prop("disabled",true)
+            $("#chat-btn").prop("disabled",true)
+        })
+        socket.on("enable-chat",()=>{
+            $("#disable-chat").prop("disabled",false)
+            $("#send-chat-btn").prop("disabled",false)
+            $("#chat-btn").prop("disabled",false)
+        })
+
+        function clocks(){
+            if(clockOn){
+                timer=setInterval(()=>{
+        
+                if(whiteToMove){
+                    $("#blackclock").removeClass("text-danger")
+                    $("#whiteclock").addClass("text-danger")
+                    secsW--
+                    
+                    if(secsW<0&&minsW>0)
+                        {
+                            secsW=59
+                            minsW--
+                            
+                        }
+                        if(secsW<10) {zeroW=0}
+                            else {zeroW =""}
+                    if(secsW<0&&minsW<0)
+                        {
+                            alert("Black Wins")
+                        }
+                } else{
+                    $("#whiteclock").removeClass("text-danger")
+                    $("#blackclock").addClass("text-danger")
+                    secsB--
+                    if(secsB<0&&minsB>0)
+                        {
+                            secsB=59
+                            minsB--
+                           
+                        }
+                        if(secsB<10) {zeroB=0}
+                            else {zeroB = ""}
+                    if(secsB<0&&minsB<0)
+                        {
+                            alert("White Wins")
+                        }
+                }
+
+                
+                document.getElementById('whiteclock').innerHTML=`${minsW}:${zeroW}${secsW}`
+                document.getElementById('blackclock').innerHTML=`${minsB}:${zeroB}${secsB}`
+                
+                },1000)
+
+            }else{
+                $("#whiteclock").removeClass("text-danger")
+                $("#blackclock").removeClass("text-danger")
+                clearInterval(timer)
+            }
+            document.getElementById('whiteclock').innerHTML=`${minsW}:${zeroW}${secsW}`
+            document.getElementById('blackclock').innerHTML=`${minsB}:${zeroB}${secsB}`
+            socket.emit('get-current-time',minsB,minsW,secsB,secsW,zeroB,zeroW)
+        }
+        
+        document.getElementById('whiteclock').innerHTML="."
+        document.getElementById('blackclock').innerHTML="."
+
+
+        ////////////////////////////////////////////////////////
+        //GAME RULES/USER INTERFACE
+        //white pieces
+
+        const rookW = '<i class="fas fa-chess-rook chesspieceW"></i>'
+        const knightW = '<i class="fas fa-chess-knight chesspieceW"></i>'
+        const bishopW = '<i class="fas fa-chess-bishop chesspieceW"></i>'
+        const queenW = '<i class="fas fa-chess-queen chesspieceW"></i>'
+        const kingW = '<i class="fas fa-chess-king chesspieceW"></i>'
+        const pawnW = '<i class="fas fa-chess-pawn chesspieceW"></i>'
+        //black pieces
+        const rookB = '<i class="fas fa-chess-rook chesspieceB"></i>'
+        const knightB = '<i class="fas fa-chess-knight chesspieceB"></i>'
+        const bishopB = '<i class="fas fa-chess-bishop chesspieceB"></i>'
+        const queenB = '<i class="fas fa-chess-queen chesspieceB"></i>'
+        const kingB = '<i class="fas fa-chess-king chesspieceB"></i>'
+        const pawnB = '<i class="fas fa-chess-pawn chesspieceB"></i>'
+        const squares = document.querySelectorAll(".square")
+       
+
+        //POSITION MAPS
+        const col=['A','B','C','D','E','F','G','H']
+        const row=['1','2','3','4','5','6','7','8']
+        //PIECE OBJECt
+        const pieceClass={
+            rook:"fa-chess-rook",
+            king:"fa-chess-king",
+            knight:"fa-chess-knight",
+            pawn:"fa-chess-pawn",
+            bishop:"fa-chess-bishop",
+            queen:"fa-chess-queen"
+        }
+        const pieceClassArr=Object.keys(pieceClass)
+
+    
+    
+
+
+    function setPositionNetwork(moveCountParam){
+        let curPosObj = moveObj[moveCountParam]
+        for(let key in curPosObj){
+            if(key!="whiteToMove"){
+                $("#"+key).html(curPosObj[key])
+            }
+        }
+        
+        $("#white-moves").children().removeClass("font-weight-bold")
+        $("#black-moves").children().removeClass("font-weight-bold")
+        $(`#move${moveCountParam}`).addClass("font-weight-bold")
+        
+        if(moveCountParam%2==0){
+            console.log("even")
+        }else{
+            console.log("odd")
+        }
+
+        whiteToMove=curPosObj.whiteToMove
+        removePieceClicks()
+        if(moveCountParam==moveCount){assignPieceClicks()}
+        
+    }
+
+    function setPosition(animate,server){
+        
+        promote=false
+        whiteToMove = true
+        checkmate = false
+        check = false
+        stalemate = false
+        wKingMoved = false
+        bKingMoved = false
+        a1RookMoved = false
+        a8RookMoved = false
+        h1RookMoved = false
+        h8RookMoved = false
+        takes=""
+        capturedPcsB = []
+        capturedPcsW = []
+        if(!server){
+            moveObj = []
+            moveCount = 0
+            gameNotes=[]
+        }
+        moveCountInc=moveCount
+        enpassant_true=false
+        moveCountInit=moveCount
+        if(!server){
+            player2exists=false;
+        }else player2exists=true
+        
+      
+        squares.forEach(square=>{
+            square.innerHTML=""
+        })
+        if(!server){
+
+       
+        $("#A1").html(rookW)
+        $("#B1").html(knightW)
+        $("#C1").html(bishopW)
+        $("#D1").html(queenW)
+        $("#E1").html(kingW)
+        $("#F1").html(bishopW)
+        $("#G1").html(knightW)
+        $("#H1").html(rookW)
+        $("#A2").html(pawnW)
+        $("#B2").html(pawnW)
+        $("#C2").html(pawnW)
+        $("#D2").html(pawnW)
+        $("#E2").html(pawnW)
+        $("#F2").html(pawnW)
+        $("#G2").html(pawnW)
+        $("#H2").html(pawnW)
+        $("#A7").html(pawnB)
+        $("#B7").html(pawnB)
+        $("#C7").html(pawnB)
+        $("#D7").html(pawnB)
+        $("#E7").html(pawnB)
+        $("#F7").html(pawnB)
+        $("#G7").html(pawnB)
+        $("#H7").html(pawnB)
+        $("#A8").html(rookB)
+        $("#B8").html(knightB)
+        $("#C8").html(bishopB)
+        $("#D8").html(queenB)
+        $("#E8").html(kingB)
+        $("#F8").html(bishopB)
+        $("#G8").html(knightB)
+        $("#H8").html(rookB)
+        }else{
+            let curPosObj = moveObj[moveCount]
+                for(let key in curPosObj){
+                    if(key!="whiteToMove"){
+                    $("#"+key).html(curPosObj[key])
+                    }
+                }
+            whiteToMove=curPosObj.whiteToMove
+        }
+
+        if(animate){
+        }
+       
+        $("#white-moves").empty()
+        $("#black-moves").empty()
+        removePieceClicks()
+        assignPieceClicks()
+
+        if(!server){
+            moveObj=[]
+            populatePosObj()
+        }
+
+        sizingRatios()
+       
+    }
+    setPosition(false)
+    
+  
+    //piece: "king","knight", etc.
+    //position: "A8"
+
+    function findLegalMoves(piece,pos,color,simulation,atk,server,moveID,pawnPromote){
+
+        console.log("pawnPromote: ",pawnPromote)
+
+        let pawnPromoteVar=""
+        let enPassant=[]
+        let colPos = pos.charAt(0) //E
+        let rowPos = pos.slice(-1) //2, so "E2" if together
+        let posMoves=[]
+        let iRow = parseInt(row[row.indexOf(rowPos)])+1
+        let iCol = col.indexOf(colPos)
+    
+        if(piece=="knight"){
+    
+            posMoves[0] = col[col.indexOf(colPos)+1] + row[row.indexOf(rowPos)-2]
+            posMoves[1] = col[col.indexOf(colPos)-1] + row[row.indexOf(rowPos)-2]
+            posMoves[2] = col[col.indexOf(colPos)+1] + row[row.indexOf(rowPos)+2]
+            posMoves[3] = col[col.indexOf(colPos)-1] + row[row.indexOf(rowPos)+2]
+
+            posMoves[4] = col[col.indexOf(colPos)+2]+row[row.indexOf(rowPos)+1]
+            posMoves[5] = col[col.indexOf(colPos)+2]+row[row.indexOf(rowPos)-1]
+            posMoves[6] = col[col.indexOf(colPos)-2]+row[row.indexOf(rowPos)+1]
+            posMoves[7] = col[col.indexOf(colPos)-2]+row[row.indexOf(rowPos)-1]
+
+           posMoves = posMoves.filter(val=>{
+               return val.length<=2
+           })
+           if(!atk){
+                posMoves.forEach(val=>{
+                    let sqrChild = document.getElementById(val).children[0]
+                    if(sqrChild!=undefined){
+                        if(sqrChild.classList.contains(color)){
+                            posMoves.splice(posMoves.indexOf(val),1)
+                        }
+                    }
+                })
+            }
+          
+        }
+        if(piece=="rook"){
+            //GO UP
+            for(let i = iRow-1;i<row.length;i++){
+                let sqr = colPos+row[i]
+                
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+                
+            }
+            //GO DOWN
+            for(let i = iRow-3;i>=0;i--){
+                let sqr = colPos+row[i]
+       
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO RIGHT
+            for(let i = iCol+1;i<col.length;i++){
+                let sqr = col[i]+rowPos
+               
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO LEFT
+            for(let i = iCol-1;i>=0;i--){
+                let sqr = col[i]+rowPos
+               
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            
+         
+            
+        }
+        if(piece=="king"){
+
+            posMoves[0]=colPos+row[row.indexOf(rowPos)+1]
+            posMoves[1]=colPos+row[row.indexOf(rowPos)-1]
+            posMoves[2]=col[col.indexOf(colPos)+1]+row[row.indexOf(rowPos)+1]
+            posMoves[3]=col[col.indexOf(colPos)+1]+row[row.indexOf(rowPos)-1]
+            posMoves[4]=col[col.indexOf(colPos)-1]+row[row.indexOf(rowPos)+1]
+            posMoves[5]=col[col.indexOf(colPos)-1]+row[row.indexOf(rowPos)-1]
+            posMoves[6]=col[col.indexOf(colPos)+1]+rowPos
+            posMoves[7]=col[col.indexOf(colPos)-1]+rowPos
+            
+            posMoves = posMoves.filter(val=>{
+               return val.length<=2
+           })
+
+
+           let newArr=[]
+           posMoves.forEach(val=>{
+               
+               let id = document.getElementById(val).children[0]
+
+              if(id==null|id==undefined){
+                      newArr.push(val)
+              }
+              else if(!id.classList.contains(color)){
+                    newArr.push(val)
+              }
+           })
+
+           posMoves = newArr
+
+           
+           
+           let atkSqrsBlack=[]
+           let atkSqrsWhite=[]
+           
+           if(!simulation&&!atk){
+            atkSqrsBlack = findAttackSquaresB(false)
+            if(color=="chesspieceW"){
+            
+               for(let i=0;i<atkSqrsBlack.length;i++){
+                   posMoves=posMoves.filter(num=>{
+                       return num!=atkSqrsBlack[i]
+                   })
+               }
+           }else if(color=="chesspieceB"){
+            atkSqrsWhite = findAttackSquaresW(false)
+               for(let i=0;i<atkSqrsWhite.length;i++){
+                   posMoves=posMoves.filter(num=>{
+                       return num!=atkSqrsWhite[i]
+                   })
+               }
+                }
+            }
+
+            if(whiteToMove){
+            if(
+                !wKingMoved&&
+                !h1RookMoved&&
+                color=="chesspieceW"&&
+                document.getElementById("F1").innerHTML==""&&
+                document.getElementById("G1").innerHTML==""&&
+                !check&&
+                !atkSqrsBlack.includes("G1")&&
+                !atkSqrsBlack.includes("F1")
+                ){
+                posMoves.push("G1")
+                
+            }
+            if(
+                !wKingMoved&&
+                !a1RookMoved&&
+                color=="chesspieceW"&&
+                document.getElementById("B1").innerHTML==""&&
+                document.getElementById("C1").innerHTML==""&&
+                document.getElementById("D1").innerHTML==""&& 
+                !check&&
+                !atkSqrsBlack.includes("C1")&&
+                !atkSqrsBlack.includes("D1")
+                ){
+                posMoves.push("C1")
+                
+            }
+           } else {
+               if(
+                !bKingMoved&&
+                !h8RookMoved&&
+                color=="chesspieceB"&&
+                document.getElementById("G8").innerHTML==""&&
+                document.getElementById("F8").innerHTML==""&&
+                !check&&
+                !atkSqrsWhite.includes("G8")&&
+                !atkSqrsWhite.includes("F8")
+                ){
+                posMoves.push("G8")
+                
+            }
+            if(
+                !bKingMoved&&
+                !a8RookMoved&&
+                color=="chesspieceB"&&
+                document.getElementById("B8").innerHTML==""&&
+                document.getElementById("C8").innerHTML==""&&
+                document.getElementById("D8").innerHTML==""&&
+                !check&&
+                !atkSqrsWhite.includes("C8")&&
+                !atkSqrsWhite.includes("D8")
+                ){
+                posMoves.push("C8")
+                
+            }}
+
+          
+            
+        }
+        if(piece=="pawn"){
+            let adjCols = [col[col.indexOf(colPos)-1],col[col.indexOf(colPos)+1]]
+                            if(adjCols[0]==undefined){adjCols.shift()} 
+                            else if(adjCols[1]==undefined){adjCols.pop()}
+
+            if(color=="chesspieceW"){//white pawn moves
+                let one = colPos+row[row.indexOf(rowPos)+1]
+                let two = colPos+row[row.indexOf(rowPos)+2]
+                let capl = col[col.indexOf(colPos)-1]+row[row.indexOf(rowPos)+1]
+                let capr = col[col.indexOf(colPos)+1]+row[row.indexOf(rowPos)+1]
+                if(!atk){
+                posMoves[0]=one
+                if(rowPos==2){
+                    posMoves[1]=two
+                    if(document.getElementById(two).children[0]){posMoves.pop()}
+                }
+                if(document.getElementById(one).children[0]){posMoves=[]}
+                if(document.getElementById(capr)){
+                if(document.getElementById(capr).children[0]){
+                    if(!document.getElementById(capr).children[0].classList.contains(color)){
+                        posMoves.push(capr)
+                    }
+                }}
+                if(document.getElementById(capl)){
+                if(document.getElementById(capl).children[0]){
+                    if(!document.getElementById(capl).children[0].classList.contains(color)){
+                        posMoves.push(capl)
+                    }
+                }}
+                
+                adjCols.forEach(adjCol=>{
+                            if(       
+                            document.getElementById(adjCol+"5").innerHTML==pawnB&&
+                            moveObj[moveCount-1][adjCol+"6"]!=pawnB&&
+                            moveObj[moveCount-1][adjCol+"7"]==pawnB&&
+                            rowPos=="5"
+                            ){
+                            posMoves.push(adjCol+"6")
+                            enPassant.push(adjCol+"6")
+                            }
+                        })
+                    }
+
+                if(!atk){
+            
+                }else{
+                    if(capl){posMoves[0]=capl}
+                    if(capr){posMoves[1]=capr}
+                }
+                
+            } else{//black pawn moves
+                
+                let one = colPos+row[row.indexOf(rowPos)-1]
+                let two = colPos+row[row.indexOf(rowPos)-2]
+                let capl = col[col.indexOf(colPos)-1]+row[row.indexOf(rowPos)-1]
+                let capr = col[col.indexOf(colPos)+1]+row[row.indexOf(rowPos)-1]
+                if(!atk){
+                posMoves[0]=one
+                if(rowPos==7){
+                    posMoves[1]=two
+                    if(document.getElementById(two).children[0]){posMoves.pop()}
+                }
+                if(document.getElementById(one).children[0]){posMoves=[]}
+                if(document.getElementById(capr)){
+                if(document.getElementById(capr).children[0]){
+                    if(!document.getElementById(capr).children[0].classList.contains(color)){
+                        posMoves.push(capr)
+                    }
+                }}
+                if(document.getElementById(capl)){
+                if(document.getElementById(capl).children[0]){
+                    if(!document.getElementById(capl).children[0].classList.contains(color)){
+                        posMoves.push(capl)
+                    }
+                }}
+                //EN PASSANT
+                adjCols.forEach(adjCol=>{
+                            if(       
+                            document.getElementById(adjCol+"4").innerHTML==pawnW&&
+                            moveObj[moveCount-1][adjCol+"3"]!=pawnW&&
+                            moveObj[moveCount-1][adjCol+"2"]==pawnW&&
+                            rowPos=="4"
+                            ){
+                            posMoves.push(adjCol+"3")
+                            enPassant.push(adjCol+"3")
+                            }
+                        })
+                    }else{
+                        if(capl){posMoves[0]=capl}
+                        if(capr){posMoves[1]=capr}
+                    }
+              
+            }
+            
+        }
+        if(piece=="bishop"){
+            for(let i = iRow-1;i<row.length;i++){
+                let j = i-(iRow-2)
+                let sqr = col[iCol+j]+row[i]
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-1;i<row.length;i++){
+                let j = i-(iRow-2)
+                let sqr = col[iCol-j]+row[i]
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-3;i>=0;i--){
+                let j = i-(iRow-2)
+                let sqr = col[iCol+j]+row[i]
+              
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-3;i>=0;i--){
+                let j = i-(iRow-2)
+                let sqr = col[iCol-j]+row[i]
+             
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+        
+            if(!simulation){
+             
+            }
+           
+        }
+        if(piece=="queen"){
+            for(let i = iRow-1;i<row.length;i++){
+                let sqr = colPos+row[i]
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO DOWN
+            for(let i = iRow-3;i>=0;i--){
+                let sqr = colPos+row[i]
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO RIGHT
+            for(let i = iCol+1;i<col.length;i++){
+                let sqr = col[i]+rowPos
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO LEFT
+            for(let i = iCol-1;i>=0;i--){
+                let sqr = col[i]+rowPos
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            //GO UP
+            for(let i = iRow-1;i<row.length;i++){
+                let j = i-(iRow-2)
+                let sqr = col[iCol+j]+row[i]
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-1;i<row.length;i++){
+                let j = i-(iRow-2)
+                let sqr = col[iCol-j]+row[i]
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-3;i>=0;i--){
+                let j = i-(iRow-2)
+                let sqr = col[iCol+j]+row[i]
+                
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+            for(let i = iRow-3;i>=0;i--){
+                let j = i-(iRow-2)
+                let sqr = col[iCol-j]+row[i]
+              
+                if(sqr.length>2){break}
+                posMoves.push(sqr)
+                if(document.getElementById(sqr).children[0]!=undefined){
+                    if(document.getElementById(sqr).children[0].classList.contains(color)){
+                        if(!atk){posMoves.splice(posMoves.indexOf(sqr),1)}
+                        break
+                    } else{
+                        break
+                    }
+                }
+            }
+          
+            
+          
+            if(!simulation){
+             
+            }
+           
+
+        }
+        
+        //ERRORs & FUNCTION RETURNS
+
+        if(simulation){return posMoves}
+        if(whiteToMove==true&&color!="chesspieceW"&&!simulation){return undefined}
+        if(whiteToMove==false&&color=="chesspieceW"&&!simulation){return undefined}
+        if(simulation&&!atk){
+           
+        }
+
+        //REMOVES VISUALIZATION IF APPLICABLE
+
+        squares.forEach(square=>{
+            square.classList.remove("move-display-w")
+            square.classList.remove("move-display-b")
+        })
+
+        //THE ACTUAL MOVE FUNCTION
+       
+        let n_posMoves = posMoves
+        let posHTML=document.getElementById(pos).innerHTML
+        function pieceIsMoved(moveID){
+            return new Promise(resolve=>{
+           
+            let legMov = document.getElementById(moveID)
+            let pieceType = document.getElementById(pos).innerHTML
+                let moveRow = moveID.slice(-1)
+                let pieceN = piece
+                moveCount++
+                moveCountInc = moveCount
+
+                $("#"+pos).empty()
+                if(legMov.firstChild){
+                    if(legMov.firstChild.classList.contains("chesspieceB")){
+                        capturedPcsB.push(legMov.firstChild.outerHTML)
+                        takes="x"
+                    } else{
+                        capturedPcsB.push(legMov.firstChild.outerHTML)
+                        takes="x"
+                    }
+                    $(legMov).empty()
+                }
+                $(legMov).append(pieceType)
+
+                function enPassantFunc(){
+                    enPassant.forEach(sqr=>{
+                        if(sqr==legMov.id&&color=="chesspieceW"&&piece=="pawn"){
+                            let removeSqrId1 = sqr.charAt(0)+parseInt(sqr.slice(-1)-1)
+                            enpassant_true=true
+                            $("#"+removeSqrId1).empty()
+                        }
+                        else if(sqr==legMov.id&&color=="chesspieceB"&&piece=="pawn"){
+                            let removeSqrId2 = sqr.charAt(0)+(parseInt(sqr.slice(-1))+1)
+                            enpassant_true=true
+                            $("#"+removeSqrId2).empty()
+                        }
+                    })
+                }
+                enPassantFunc()
+
+                let castleK=false
+                let castleQ=false
+
+                function castle(piece, color){
+                    
+
+                    if(piece=="king"&&
+                    color=="chesspieceW"&&
+                    !wKingMoved){
+                        if(legMov.id=="G1"){
+                            $("#H1").empty()
+                            $("#F1").html(rookW)
+                            castleK=true
+                        }
+                        if(legMov.id=="C1"){
+                            $("#A1").empty()
+                            $("#D1").html(rookW)
+                            castleQ=true
+                        }
+                    }
+                    if(piece=="king"&&
+                    color=="chesspieceB"&&
+                    !bKingMoved){
+                        if(legMov.id=="C8"){
+                            $("#A8").empty()
+                            $("#D8").html(rookB)
+                            castleQ=true
+                        }
+                        if(legMov.id=="G8"){
+                            $("#H8").empty()
+                            $("#F8").html(rookB)
+                            castleK=true
+                        }
+                    }
+                    if(rotated){
+                        rotateBack()
+                        rotate()
+                    }else{
+                        rotate()
+                        rotateBack()
+                    }
+                    sizingRatios()
+                }
+                castle(piece, color)
+
+                
+                document.querySelector(".fas.fa-chess-rook.chesspieceB").classList.value
+                document.querySelector(".fas.fa-chess-king.chesspieceW").classList.value
+                document.querySelector(".fas.fa-chess-king.chesspieceB").classList.value
+
+                function castleCancel(){
+                    if(!document.getElementById("A1").firstChild){a1RookMoved=true} 
+                    else if(document.getElementById("A1").firstChild.classList.value!=document.querySelector(".fas.fa-chess-rook.chesspieceW").classList.value)
+                    {a1RookMoved=true}
+
+                    if(!document.getElementById("H1").firstChild){h1RookMoved=true} 
+                    else if(document.getElementById("H1").firstChild.classList.value!=document.querySelector(".fas.fa-chess-rook.chesspieceW").classList.value)
+                    {h1RookMoved=true}
+
+                    if(!document.getElementById("A8").firstChild){a8RookMoved=true} 
+                    else if(document.getElementById("A8").firstChild.classList.value!=document.querySelector(".fas.fa-chess-rook.chesspieceB").classList.value)
+                    {a8RookMoved=true}
+
+                    if(!document.getElementById("H8").firstChild){h8RookMoved=true} 
+                    else if(document.getElementById("H8").firstChild.classList.value!=document.querySelector(".fas.fa-chess-rook.chesspieceB").classList.value)
+                    {h8RookMoved=true}
+
+                    if(!document.getElementById("E1").firstChild){wKingMoved=true} 
+                    else if(document.getElementById("E1").firstChild.classList.value!=document.querySelector(".fas.fa-chess-king.chesspieceW").classList.value)
+                    {wKingMoved=true}
+
+                    if(!document.getElementById("E8").firstChild){bKingMoved=true} 
+                    else if(document.getElementById("E8").firstChild.classList.value!=document.querySelector(".fas.fa-chess-king.chesspieceB").classList.value)
+                    {bKingMoved=true}
+ 
+
+
+
+
+                }
+                castleCancel()
+
+                
+                let promisePawn = new Promise(async (resolve,reject)=>{
+                if(piece=="pawn"){
+                    if(moveRow=="1"|moveRow=="8"){
+                        promote=true
+                        if(!server){
+                            pieceN=await promotePawn(color,moveID)
+                            pawnPromoteVar = pieceN
+                            sizingRatios()
+                        }else if(server){
+                            $(legMov).empty()
+                            if(whiteToMove){
+                                $(legMov).html(`<i class="fas fa-chess-${pawnPromote} chesspieceW"></i>`)
+                            }else{
+                                $(legMov).html(`<i class="fas fa-chess-${pawnPromote} chesspieceB"></i>`)
+                            }
+                            sizingRatios()
+                        }
+                        if(rotated){
+                                rotateBack()
+                                rotate()
+                            }
+                        resolve("success")
+                    } else resolve("success")
+                } else resolve("success")
+
+                })
+                //check for check,stalemate,checkmate
+              
+                promisePawn.then(result=>{
+                (function(){
+
+                squares.forEach(square=>{
+                        square.classList.remove("move-display-w")
+                        square.classList.remove("move-display-b")
+                        $(square).off('mousedown')
+                })
+                
+                if(whiteToMove){
+                        whiteToMove=false
+                } else(whiteToMove=true)
+
+                findCheckMate()
+                //findStaleMate()
+                
+                removePieceClicks()
+                if(server|!activeGame){assignPieceClicks()}
+
+                notate(piece,moveID,pos,promote,pieceN,enpassant_true,castleK,castleQ)
+                
+                check=false;
+                promote=false
+                checkmate=false;
+                stalemate=false
+                enpassant_true=false
+                populatePosObj()
+                socket.emit("send-current-position",moveObj,moveCount)
+                socket.emit('move',piece,pos,color,simulation,atk,true,legMov.id,pawnPromoteVar)
+                })()
+      
+
+            if(whiteToMove){
+                            secsW+=incW
+                            if(secsW>59&&incW>0){
+                                minsW+=1
+                                secsW-=60
+                            }
+                        }
+                        else{
+                            secsB+=incW
+                            if(secsB>59&&incW>0){
+                                minsB+=1
+                                secsB-=60
+                            }
+                        }
+                    })
+                resolve("x")
+            })
+        }
+
+        n_posMoves.forEach(move=>{
+            
+            (function(){
+                let moveHTML = document.getElementById(move).innerHTML
+                document.getElementById(move).innerHTML=posHTML
+                document.getElementById(pos).innerHTML=""
+                findCheck()
+                document.getElementById(pos).innerHTML=posHTML
+                document.getElementById(move).innerHTML=moveHTML
+            })()
+
+            if(!check&&!atk){
+          
+            //Sets Style
+            let legMov = document.getElementById(move)
+            if(legMov.classList.contains("w")){
+                legMov.classList.add("move-display-w")
+            } else if(legMov.classList.contains("b")){
+                legMov.classList.add("move-display-b")
+            }
+            
+            $(legMov).off('mousedown')
+//////////////////////////////////////////////
+            
+            if(!server){
+                        $("#"+move).on('mousedown', async ()=>{
+                        pieceIsMoved(move)
+                        
+        
+                    })
+                }
+            }
+        })
+
+        if(server){
+            return pieceIsMoved(moveID)
+            }
+
+        if(simulation){
+            return safeMoves
+        }
+    }
+
+    function assignPieceClicks(){
+    let piecesW = document.querySelectorAll(".chesspieceW")
+    piecesW.forEach(piece=>{
+        $(piece).on('mousedown',()=>{
+            let pieceType
+            for(let pieceKey in pieceClass){
+                if(piece.classList.contains(pieceClass[pieceKey]))
+                {pieceType = pieceKey}
+            }
+            let position = piece.parentElement.id
+            findLegalMoves(pieceType,position,"chesspieceW",false)
+        })
+    })
+    let piecesB = document.querySelectorAll(".chesspieceB")
+    piecesB.forEach(piece=>{
+        $(piece).on('mousedown',()=>{
+            let pieceType
+            for(let pieceKey in pieceClass){
+                if(piece.classList.contains(pieceClass[pieceKey]))
+                {pieceType = pieceKey}
+            }
+            let position = piece.parentElement.id
+            findLegalMoves(pieceType,position,"chesspieceB",false)
+        })
+    })
+    }
+
+    function removePieceClicks(){
+        let piecesW = document.querySelectorAll(".chesspieceW")
+        piecesW.forEach(piece=>{
+        $(piece).off('mousedown')
+    })
+    let piecesB = document.querySelectorAll(".chesspieceB")
+        piecesB.forEach(piece=>{
+        $(piece).off('mousedown')
+    })
+    }
+  
+    function findAttackSquaresW(legal){
+        let atkSqrsW=[]
+        let piecesW = document.querySelectorAll(".chesspieceW")
+        piecesW.forEach(piece=>{
+            let pieceType
+            for(let pieceKey in pieceClass){
+                if(piece.classList.contains(pieceClass[pieceKey]))
+                {pieceType = pieceKey}
+            }
+            let position = piece.parentElement.id
+            if(!legal){
+            let arr = findLegalMoves(pieceType,position,"chesspieceW",true,true)
+            arr.forEach(val=>{
+                if(val){atkSqrsW.push(val)}
+            })
+            }   
+            if(legal){
+            let arr = findLegalMoves(pieceType,position,"chesspieceW",true,false)
+            arr.forEach(move=>{
+                let posHTML = document.getElementById(position).innerHTML
+                if(move){
+                (function(){
+                    let moveHTML = document.getElementById(move).innerHTML
+                    document.getElementById(move).innerHTML=posHTML
+                    document.getElementById(position).innerHTML=""
+                    findCheck()
+                    document.getElementById(position).innerHTML=posHTML
+                    document.getElementById(move).innerHTML=moveHTML
+                    if(!check){atkSqrsW.push(move)}
+                })()
+                }
+                
+            })
+            }
+        })
+        return atkSqrsW
+    }
+    function findAttackSquaresB(legal){
+        let atkSqrsB=[]
+        let piecesB = document.querySelectorAll(".chesspieceB")
+        piecesB.forEach(piece=>{
+            let pieceType
+            for(let pieceKey in pieceClass){
+                if(piece.classList.contains(pieceClass[pieceKey]))
+                {pieceType = pieceKey}
+            }
+            let position = piece.parentElement.id
+            if(!legal){
+            let arr = findLegalMoves(pieceType,position,"chesspieceB",true,true)
+            arr.forEach(val=>{
+                if(val){atkSqrsB.push(val)}
+            })
+            }   
+            if(legal){
+            let arr = findLegalMoves(pieceType,position,"chesspieceB",true,false)
+            arr.forEach(move=>{
+                let posHTML = document.getElementById(position).innerHTML
+                if(move){
+                (function(){
+                    let moveHTML = document.getElementById(move).innerHTML
+                    document.getElementById(move).innerHTML=posHTML
+                    document.getElementById(position).innerHTML=""
+                    findCheck()
+                    document.getElementById(position).innerHTML=posHTML
+                    document.getElementById(move).innerHTML=moveHTML
+                    if(!check){atkSqrsB.push(move)}
+                })()
+                }
+                
+            })
+            }
+        })
+        return atkSqrsB
+    }
+
+$("#clearboard").on('click',()=>{
+    clearBoard()
+    removePieceClicks()
+})
+$("#setboard").on('click',()=>{
+    setPosition(true)
+    
+})
+$("#promotepawn").on('click',()=>{
+    promotePawn()
+})
+
+$("#click-left").on('click',()=>{
+            if(moveCountInc>1){
+            moveCountInc--
+            setPositionNetwork(moveCountInc)
+            }
+        
+})
+$("#click-right").on('click',()=>{
+            if(moveCountInc<moveCount){
+            moveCountInc++
+            setPositionNetwork(moveCountInc)
+            }
+})
+    function clearBoard(){
+       const squares=document.querySelectorAll(".square")
+       squares.forEach(square=>{
+           if(square.firstChild)
+           square.firstChild.classList.add("animate-out")
+       })
+    }
+    function promotePawn(color,pos){
+        return new Promise(resolve=>{
+        let pBox = document.getElementById("queen-pawn-modal")
+        pBox.classList.remove("animate-out")
+        $(pBox).css({
+            "display":"block",
+        })
+        pBox.classList.add("animate-up")
+        const selector=document.querySelectorAll(".chesspieceG")
+        selector.forEach(piece=>{
+            $(piece).on('click',()=>{
+            
+                document.getElementById(pos).innerHTML=piece.outerHTML
+                document.getElementById(pos).firstChild.classList.remove("chesspieceG")
+                document.getElementById(pos).firstChild.classList.add(color)
+                /*
+                if(player2exists){$(document.getElementById(pos).firstChild).css({
+                    "transform":"rotate(180deg)"
+                })}
+                */
+                selector.forEach(piece=>{$(piece).off('click')})
+                pBox.classList.remove("animate-up")
+                pBox.classList.add("animate-out")
+                resolve(document.getElementById(pos).firstChild.classList[1].substring(9))
+            })
+        })
+    })
+    }
+    
+    function findCheck(){
+        check=false
+        if(whiteToMove){
+            let wKingId = document.querySelector(".fa-chess-king.chesspieceW").parentElement.id
+            let atkSqrsB = findAttackSquaresB(false)
+            for(let i in atkSqrsB){
+                if(atkSqrsB[i]==wKingId){
+                    check=true
+                    console.log("White is in check!")
+                    break
+                }else check=false
+            }
+        }
+        if(!whiteToMove){
+            let bKingId=document.querySelector(".fa-chess-king.chesspieceB").parentElement.id
+            let atkSqrsW = findAttackSquaresW(false)
+            for(let i in atkSqrsW){
+                if(atkSqrsW[i]==bKingId){
+                    check=true
+                    console.log("Black is in check!")
+                    break
+                }else check=false
+            }
+        } 
+        return check
+    }
+
+    function findCheckMate(){
+                checkmate=false
+                findCheck()
+                    if(check){
+                    if(whiteToMove){
+                        let safeMoves=findAttackSquaresW(true)
+                        console.log(safeMoves.length)
+                        if(safeMoves.length<1){
+                            checkmate = true
+                            check=false
+                            console.log("White is in checkmate!")
+                        } else checkmate = false, check=true
+                    }
+                    if(!whiteToMove){
+                        let safeMoves=findAttackSquaresB(true)
+                        console.log(safeMoves.length)
+                        if(safeMoves.length<1){
+                            checkmate = true
+                            check=false
+                            console.log("Black is in checkmate!")
+                        } else checkmate = false, check=true
+                    }
+                }
+                return checkmate
+                }
+    function findStaleMate(){
+                stalemate=false
+                findCheck()
+                    if(!check){
+                    if(whiteToMove){
+                        let safeMoves=findAttackSquaresW(true)
+                        console.log(safeMoves.length)
+                        if(safeMoves.length<1){
+                            stalemate = true
+                            check=false
+                        } else stalemate = false, check=false
+                    }
+                    if(!whiteToMove){
+                        let safeMoves=findAttackSquaresB(true)
+                        console.log(safeMoves.length)
+                        if(safeMoves.length<1){
+                            stalemate = true
+                            check=false
+                        } else checkmate = false, check=false
+                    }
+                }
+                return stalemate
+                }
+
+   
+    function notate(piece,move,pos,promote,pieceN,enpassant_true,castleK,castleQ){
+        
+                    let char=""
+                    let char2=""
+                    let elip=""
+                    let ChkOrM8=""
+                    let promPiece=""
+                    if(piece=="knight"){char="N"}
+                    if(piece=="bishop"){char="B"}
+                    if(piece=="rook"){char="R"}
+                    if(piece=="queen"){char="Q"}
+                    if(piece=="king"){char="K"}
+                    if(pieceN=="knight"){char2="N"}
+                    if(pieceN=="bishop"){char2="B"}
+                    if(pieceN=="rook"){char2="R"}
+                    if(pieceN=="queen"){char2="Q"}
+                    if(pieceN=="king"){char2="K"}
+                    if(whiteToMove){elip="..."}
+                    if(check){ChkOrM8="+"}
+                    if(checkmate){ChkOrM8="#"}
+                    if(takes!=""&&piece=="pawn"){takes = pos.charAt(0).toLowerCase()+"x"}
+                    if(enpassant_true){takes = pos.charAt(0).toLowerCase()+"x"}
+                    if(promote){promPiece="="+char2}
+
+                    let notatedMove = elip+char+takes+move.toLowerCase()+promPiece+ChkOrM8
+                    if(castleK){
+                        notatedMove="O-O"
+                    }
+                    if(castleQ){
+                        notatedMove="O-O-O"
+                    }
+
+                    gameNotes.push(notatedMove)
+
+                    if(!whiteToMove){$("#white-moves").append(`<li id="move${moveCount}">`+notatedMove+'</li>')}
+                    else if(whiteToMove){$("#black-moves").append(`<li id="move${moveCount}">`+notatedMove+'</li>')}
+                    takes=""
+                    var elem = document.getElementById('notation-inner');
+                    //AUTO-SCROLL
+                    elem.scrollTop = elem.scrollHeight;
+                    //MAKES IT BOLD/ANIMATED
+                    $("#white-moves").children().removeClass("font-weight-bold")
+                    $("#black-moves").children().removeClass("font-weight-bold")
+                    $(`#move${moveCount}`).addClass("font-weight-bold fadein")
+
+                    if(!whiteToMove&&checkmate){
+                        $(".chatbox").append(`<li style="color:red;">***1-0</li>`)
+                        removePieceClicks()
+                        clearTimeout(timer)
+                        document.getElementById('whiteclock').innerHTML="."
+                        document.getElementById('blackclock').innerHTML="."
+                        socket.emit("checkmate")
+                    }
+                
+                    if(whiteToMove&&checkmate){
+                        $(".chatbox").append(`<li style="color:red;">***0-1</li>`)
+                        removePieceClicks()
+                        clearTimeout(timer)
+                        document.getElementById('whiteclock').innerHTML="."
+                        document.getElementById('blackclock').innerHTML="."
+                        socket.emit("checkmate")
+                    }
+               
+                    
+                }
+
+                function rotate(){
+                    rotated=true
+            $(".chesspieceB").removeClass("rotate")
+            $(".chesspieceW").removeClass("rotate")
+
+            $("#chessboard").css({
+                "transform":"rotate(180deg)"
+            })
+
+            $(".chesspieceB").addClass("rotate")
+            $(".chesspieceW").addClass("rotate")
+
+            $("#user-icon-b").css({
+                "transform":"rotate(0deg)"
+            })
+            $("#user-icon-w").css({
+                "transform":"rotate(0deg)"
+            })
+            
+            if(clockOn){
+                if($("#whiteclock").hasClass("text-danger")){
+                    $("#whiteclock").removeClass("text-danger")
+                    $("#blackclock").addClass("text-danger")
+                }else{
+                    $("#blackclock").removeClass("text-danger")
+                    $("#clock").addClass("text-danger")
+
+                }
+                
+                document.getElementById("blackclockrow").children[1].id="whiteclock"
+                document.getElementById("whiteclockrow").children[1].id="blackclock"
+
+                
+                
+                document.getElementById('whiteclock').innerText=`${minsW}:${zeroW}${secsW}`
+                document.getElementById('blackclock').innerText=`${minsB}:${zeroB}${secsB}`
+            }
+            
+            
+        }
+
+
+        function switchIcons(){
+            if($("#user-icon-w").hasClass("icon-w")){
+            $("#user-icon-w")
+                .removeClass("icon-w")
+                .addClass("icon-b")
+    
+            $("#user-icon-b")
+                .removeClass("icon-b")
+                .addClass("icon-w")
+            }else{
+                $("#user-icon-w")
+                .removeClass("icon-b")
+                .addClass("icon-w")
+    
+            $("#user-icon-b")
+                .removeClass("icon-w")
+                .addClass("icon-b")
+            }
+            
+        }
+        
+        function rotateBack(){
+            rotated=false
+
+            $("#chessboard").css({
+                "transform":"rotate(0deg)"
+            })
+
+            $(".chesspieceB").removeClass("rotate")
+            $(".chesspieceW").removeClass("rotate")
+
+            $("#user-icon-b").css({
+                "transform":"rotate(0deg)"
+            })
+            $("#user-icon-w").css({
+                "transform":"rotate(0deg)"
+            })
+            if(clockOn){
+                if($("#whiteclock").hasClass("text-danger")){
+                    $("#whiteclock").removeClass("text-danger")
+                    $("#blackclock").addClass("text-danger")
+                }else{
+                    $("#blackclock").removeClass("text-danger")
+                    $("#clock").addClass("text-danger")
+
+                }
+                
+                document.getElementById("blackclockrow").children[1].id="blackclock"
+                document.getElementById("whiteclockrow").children[1].id="whiteclock"
+                
+                document.getElementById('whiteclock').innerText=`${minsW}:${zeroW}${secsW}`
+                document.getElementById('blackclock').innerText=`${minsB}:${zeroB}${secsB}`
+            }
+            
+        }
+
+
+    function populatePosObj(){
+        let newObj = {}
+        for(let i=0;i<col.length;i++){
+            for(let j=0;j<row.length;j++){
+                let id = col[i]+row[j]
+                newObj[id]=document.getElementById(id).innerHTML
+            }
+        }
+        newObj.whiteToMove=whiteToMove
+        moveObj.push(newObj)
+        if(gameRoomIdCode.length>0){
+            
+        }
+    }
+    
+
+
+//Random text generator: Math.random().toString(36).substr(2, 10).toUpperCase()
+    
+    </script>
+
+</body>
+</html>

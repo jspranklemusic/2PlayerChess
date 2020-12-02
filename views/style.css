@@ -1,0 +1,961 @@
+@media only screen and (max-device-width: 969px) {
+
+    h4{
+        font-size:20px !important;
+    }
+
+    h3{
+        font-size:20px !important;
+    }
+
+    #extra-column{
+        display:none;
+    }
+
+    #start-join{
+        display:flex;
+        flex-direction: row;
+    }
+    #start-game{
+        width:50% !important;
+        font-size:1.1em !important;
+        padding:20px !important;
+    }
+    #join-game-btn{
+        width:50% !important;
+        font-size:1.1em !important;
+        padding:20px !important;
+    }
+    
+    .switch{
+        transform: scale(0.7);
+    }
+
+    .x-button{
+        font-size:25px !important;
+    }
+
+   .title-container{
+       display:grid;
+       grid-template-columns: 1fr 2fr 1fr;
+       grid-template-rows: auto;
+       justify-content: space-around;
+       align-content: center;
+       padding:0px;
+       
+   }
+
+    #blackclock{
+        font-size:1em !important;;
+        
+    }
+    #whiteclock{
+        font-size:1em !important;;
+    }
+    .flip-icon{
+        font-size:1em !important;
+        cursor: pointer;
+        margin-left:20px;
+        
+    }
+    #whiteclockrow{
+        padding:0px !important;
+        margin:0px !important;
+        height:30px;
+
+    }
+    #blackclockrow{
+        padding:0px !important;
+        margin:0px !important;
+        height:30px;
+    }
+   
+    #gameboard-column{
+        display:grid;
+        justify-content: center;
+        border:1px dotted grey;
+      
+      
+    
+    }
+   
+   
+   
+    .btn{
+        font-size:0.80em !important;
+    }
+    #game-controls-container{
+        display:block !important;
+        width:100vw;
+        position:relative;
+        left:0vw;
+        margin:0px;
+        box-sizing: border-box;
+        height:calc(40vh - 36px) !important;
+    
+    }
+
+    #join-game-btn{
+        margin:0px !important;
+        padding:5px;
+    }
+    #start-game{
+        padding:5px;
+    }
+
+    #title{
+        border-bottom:1px dotted grey;
+        padding-bottom:10px;
+        background:rgb(36, 35, 35);
+        z-index:100 
+    }
+
+    .w-40{
+        width:100% !important;
+    }
+
+
+    
+
+    .row.justify-content-around.notation-navbar{
+        width:100%;
+        justify-content: space-around !important;
+        margin:auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+    }
+    #room-name-container{
+        font-size:10px;
+        height:10px !important;
+    }
+    .row.justify-content-around.gamebuttons{
+        margin-bottom:0px;
+        padding:0px;
+        font-size:12px;
+        width:100% !important;
+        display:grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        margin-left:0px;
+      
+    }
+    .copy-icon{
+        
+        font-size:12px;
+    }
+    #user1circle{
+        position: absolute;;
+        text-align: right;
+        margin-top:3px;
+        right:0px;
+    }
+    #user2circle{
+        position: absolute;;
+        text-align: right;
+        margin-top:3px;
+        right:0px;
+    }
+
+    #resign{
+        border:1px solid grey;
+        background:black !important;
+        display:block !important;
+        box-sizing:  border-box !important;
+    }
+    #leave-room{
+        border:1px solid grey;
+        background:black !important;
+        width:100%;
+        display:block;
+        box-sizing: border-box;
+    }
+    #offer-draw{
+        border:1px solid grey;
+        background:black !important;
+        width:100%;
+        display:block;
+        box-sizing: border-box;
+    }
+  
+    #usernames{
+        
+        position: relative;
+        display:grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
+        font-size:12px;
+        justify-items: self-start;
+        margin-bottom:5px;
+        margin-left:0px;
+        padding-left:0px;
+        text-align: left !important;
+        width:100%;
+    }
+    #notation-container{
+        display:block;
+        margin:0px;
+        top:0px;
+        left:0px;
+        position: relative; 
+        font-size:0.8em;
+        border-right:1px dotted grey;
+        width:100%;
+        height:calc(40vh - 36px) !important;
+    }
+    #click-left{
+        display:grid;
+        grid-template-rows: auto;
+        align-content: center;
+        font-size:8px;
+        height:30px;
+        padding:0px 10px 0px 10px !important;
+       
+       
+    }
+    #click-right{
+        display:grid;
+        grid-template-rows: auto;
+        align-content: center;
+        justify-items: self-end;
+        font-size:8px;
+        height:30px;
+        padding:0px 10px 0px 10px !important;
+    
+
+    }
+    #reset-board{
+        height:30px;
+        padding-top:0px;
+        padding-bottom: 0px;
+    }
+    .user{
+        margin-left:2px;
+    }
+   
+    .notation-navbar{
+        position:relative;
+        display:grid !important;
+        justify-content: space-between !important;
+        margin-top:10px;
+        width:100%;
+       
+    }
+    #notation-inner{
+        height:50% !important;
+        width:100% !important;
+    }
+    .notationstartgame-wrapper{
+        height:45%;
+        overflow: hidden;
+    }
+    .hr-hide{
+        display:none;
+    }
+  
+
+
+    #notation-float{
+        display:grid;
+        justify-content: start;
+        position: absolute;
+        left:0vw !important;
+        /*border:1px solid blue;*/
+        grid-template-columns: 100vw 100vw;
+        width:200vw !important;
+        height:calc(40vh - 36px) !important;
+        column-gap: 0px;
+        padding:10px;
+       
+     
+        
+    }
+    .chesspieceB{
+        text-shadow:1px 1px 1px black !important;
+       
+    }
+    .layout-row{
+        display:grid !important;
+        grid-template-rows: 40vh 60vh;
+        grid-template-columns: auto;
+
+    }
+
+    ::placeholder{
+        font-size:11px;
+    }
+
+    #copylink{
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+  
+    #send-chat-btn{
+        display:grid;
+        align-items:center;
+        font-size:1px;
+      
+    }
+
+    #chat-and-buttons{
+        box-sizing: border-box !important;
+        display:grid;
+        grid-template-columns: 48.5% 48.5%;
+        justify-content: space-around;
+        align-content: start;
+        overflow: hidden;
+        grid-template-rows: calc(40vh - 88px);
+        column-gap: 3%;
+        
+    }
+
+  
+   
+
+    .input-group-prepend{
+        height:32px;
+    }
+    .input-group-prepend.a{
+        height:100% !important;
+    }
+
+    #chat-btn.form-control{
+        display:block !important;
+        position: relative;
+        padding-top:5px !important;
+        padding-bottom: 5px !important;
+        height:100% !important;
+        
+    }
+
+    #chat-options{
+        
+        display:block;
+        transform:scale(0.7);
+        margin-bottom:0px;
+        padding-bottom:0px;
+        height:25px;
+        order:3;
+        
+    }
+    .chatbox{
+        box-sizing: border-box;
+        height:100% !important;
+        border-radius:4px;
+        width:100%;
+        border:1px solid grey;
+        text-align: left;
+        order:1;
+        padding-bottom:0px;
+        margin-bottom:0px;
+    }
+    #chat{
+        border-bottom-left-radius:0.2rem;
+        border-bottom-right-radius:0.2rem;
+       order:2;
+       height:23px !important;
+       width:100%;
+       font-size:12px !important;
+       overflow: hidden !important;
+       
+    }
+    input[type="text"]{
+        font-size:12px;
+    }
+    #chat-options-container{
+       
+        display:grid;
+        grid-template-rows: 61% 20% 10%;
+        align-content: flex-start;
+        box-sizing: border-box;
+        padding:0px !important;
+        width:100% !important;
+        row-gap: 1px !important;
+        justify-items: center;
+
+    }
+    ul {
+        list-style: none;
+        padding-left: 5px;
+    }​
+   
+  
+
+}
+
+/*
+END MEDIA QUERY
+*/
+
+
+.shift-left{
+    transition:0.5s ease-in-out;
+    transform:translateX(-100vw);
+
+}
+
+.shift-right{
+    transition:0.5s ease-in-out;
+    transform:translateX(0vw);
+}
+
+@keyframes animate-up{
+    0%{
+        opacity:0;
+        transform: translateY(200px);
+        display:unset;
+    }
+    100%{
+        opacity:1;
+        transform: translateY(0px);
+        display:unset;
+    }
+}
+@keyframes animate-out{
+    0%{
+        opacity:1;
+        display:unset;
+    }
+    100%{
+        
+        opacity:0;
+        display:none;
+        z-index: -100;
+    }
+}
+@keyframes fadeout{
+    0%{
+        opacity:1;
+        transform:translateY(50px)
+        
+    }
+    100%{
+        
+        opacity:0;
+        transform:translateY(0px)
+    }
+}
+@keyframes fadein{
+    0%{
+        opacity:0;
+        transform:translateY(20px)
+        
+    }
+    100%{
+        
+        opacity:1;
+        transform:translateY(0px)
+    }
+}
+@keyframes fadebetween{
+    0%{
+        opacity:1
+    }
+    50%{
+        opacity:0.5
+    }
+    100%{
+        opacity:1
+    }
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(359deg);
+    }
+  }
+  @keyframes expand {
+    0% {
+      transform: scale(1)
+    }
+    50% {
+        transform: scale(1.4)
+      }
+    100% {
+      transform: scale(1)
+    }
+  }
+@keyframes shakeLR{
+    0%{
+        transform:translateX(0px)
+    }
+    25%{
+        transform:translateX(15px)
+    }
+    50%{
+        transform:translateX(-15px)
+    }
+    75%{
+        transform:translateX(15px)
+    }
+    100%{
+        transform:translateX(0px)
+    }
+}
+
+html{
+    overflow: hidden;
+}
+
+
+
+.side-col{
+    width:3vw;
+}
+
+body{
+    overflow: hidden;
+    position:fixed;
+}
+
+
+.shakeLR{
+    animation:shakeLR 0.5s ease-out
+}
+
+.expand{
+    animation:expand 2.5s infinite ease-in-out;
+}
+
+.rotation {
+    animation: rotation 2.5s infinite ease-in-out;
+  }
+
+.fadebetween{
+    animation:fadebetween 2.5s ease-in-out infinite;
+}
+
+.animate-up{
+    animation:animate-up 0.5s;
+    animation-fill-mode: forwards;
+}
+.animate-out{
+    animation:animate-out 0.5s;
+    animation-fill-mode: forwards;
+}
+.fadeout{
+    animation:fadeout 2s ease-out;
+    animation-fill-mode: forwards;
+}
+.fadein{
+    animation:fadein 0.3s;
+    animation-fill-mode: forwards;
+}
+
+li{
+    font-size:11px !important;
+}
+
+#reset-board{
+    border:1px solid grey;
+    margin:0px;
+    display:block;
+    flex-grow: 3;
+}
+
+.margin-auto{
+    margin:auto;
+}
+.header-style{
+    padding-top:13px;
+    padding-bottom:13px;
+}
+.cool-font1{
+    font-family: 'Montserrat', sans-serif;
+}
+.header-bg{
+    padding-bottom:20px;
+}
+#main-nav{
+    margin-top:20px;
+}
+#game-area{
+    height:50vh;
+    background:white;
+   
+}
+
+#click-left{
+    display:grid;
+    grid-template-rows: aut o;
+    align-content: center;
+    font-size:14px;
+    padding:20px;
+    flex-flow: 1;
+}
+#click-right{
+    display:grid;
+    grid-template-rows: auto;
+    align-content: center;
+    justify-items: self-end;
+    font-size:14px;
+    padding:20px;
+    flex-flow: 1;
+    
+}
+
+.square{
+    height:100%;
+    width:100%;
+    min-width: 1px;
+    min-height: 1px;
+    display:grid;
+    align-items: center;
+    justify-items: center;
+}
+
+#gameboard-column{
+    background:black;
+}
+
+#chessboard{
+    display:grid;
+    height:100%;
+    width:100%;
+    min-width: 1px;
+    min-height: 1px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    
+    
+}
+.game-column{
+    height:100%;
+    width:100%;
+    min-width: 1px;
+    min-height: 1px;
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    
+}
+
+.b{
+    background:#136600;
+}
+.w{
+    background:#e7ebd1;
+}
+
+
+.chesspieceW{
+    font-size: 65px;
+    color:#c9b375;
+    text-shadow: 0px 2px 2px black;
+    min-width: 1px;
+    min-height: 1px;
+ 
+}
+.chesspieceB{
+    font-size: 65px;
+    color:#2e2e2e;
+    text-shadow: 2px 2px 1px black;
+    min-width: 1px;
+    min-height: 1px;
+    
+}
+.chesspieceG{
+    font-size: 2.5em;
+    color:grey;
+    text-shadow: 0px 2px 2px black;
+    text-align: center;
+
+}
+.move-display-w{
+    background:#ebd1d1;
+    transition:0.5s;
+    border:1px solid red;
+}
+.move-display-b{
+    background:#d64040;
+    transition:0.5s;
+    border:1px solid red;
+}
+#queen-pawn-modal{
+    position: absolute;
+    background:white;
+    border:1px solid black;
+    border-radius:20px;
+    padding:10px;
+    z-index:10;
+    top:0;
+    margin-top:30vh;
+    left:0;
+    width:20vw;
+    height:30vh;
+    min-height: 50px;
+    max-height: 150px;
+    margin-left:40vw;
+    box-shadow: 1px 1px 2px black;
+    display:none;
+   
+}
+.pawn-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: space-evenly;
+    align-items: center;
+}
+#select-piece{
+    text-align: center;
+}
+#button-ctrls{
+    padding-top:-500px;
+}
+.button-large{
+    font-size:1.5em;
+}
+
+
+.row.layout-row{
+    height:100vh;
+}
+@media only screen and (min-device-width: 970px) {
+    .row.layout-row{
+        display:grid;
+        grid-template-columns: 25% 50% 25%;
+        height:100vh;
+        width:100vw;
+    }
+    .username-container.a{
+        width:50vw !important;
+        margin:auto;
+        margin-top:25vh;
+    }
+    .username-container.d{
+        width:50vw !important;
+        margin:auto;
+        margin-top:25vh;
+    }
+    .hr-show{
+        display:none;
+    }
+    #modaldraw{
+        width:100vw;
+        display:none;
+    }
+}
+
+
+#notation-float{
+    position: relative;
+    left:0px;
+    top:0px;
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+#notation-inner{
+    margin:auto;
+    width:90%;
+    height:135px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border:1px solid grey;
+    border-radius:7px;
+}
+#white-moves{
+    margin-left:10px;
+}
+.chess-bgd{
+    background:white;
+}
+
+.icon-b{
+color:black;
+}
+.icon-w{
+color:#c9b375;
+}
+
+.gamebuttons{
+    padding:20px;
+}
+
+.btn-block{
+    margin:0px !important;
+    
+}
+
+.leave-rematch-container{
+    margin:auto !important;
+    width:100% !important;
+}
+
+.chat-input{
+    padding-right:10px;
+    padding-left:10px;
+}
+.chat-input-container{
+    padding-bottom: 20px;
+}
+ul {
+    list-style-type: none;
+  }
+.chatbox{
+    height:200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+
+#modalusername{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height: 100vh;
+    z-index:1000;
+    background:rgba(0, 0, 0, 0.85);
+   
+}
+.enter-your-name{
+    display:grid;
+    grid-template-columns: 20% 80% 20%;
+    grid-template-rows: 100%;
+    justify-content: space-between
+    
+    
+}
+
+.username-container{
+    display:block;
+    height:auto;
+    width:auto;
+    max-height:50vh;
+    margin-top:25vh;
+    background:black;
+    padding:25px;
+    border-radius:10px;
+}
+
+.rotation{
+    transform: rotate(180deg)
+}
+
+.modal-box{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height: 100vh;
+    z-index:100000;
+    background:rgba(0, 0, 0, 0.85);
+}
+.hide{
+    display:none;
+}
+.notation-navbar-container{
+    width:100%;
+    display:grid;
+    justify-items: center;
+}
+.notation-navbar{
+    display:flex;
+    position: relative;
+    width:90%;
+    flex-direction: row;
+}
+.notation-controls{
+    cursor: pointer;
+    border:1px solid grey;
+    padding-left:10px;
+    padding-right:10px;
+}
+.notation-controls:hover{
+    background:#2b2b2b;
+}
+#start-game-container{
+    padding-bottom:20px;
+}
+.online{
+    color:green;
+}
+.offline{
+    color:red;
+}
+.w-40{
+    width:40%;
+}
+.w-45{
+    width:46%;
+}
+.loading-screen-modal{
+    position: absolute;
+    background:rgba(0, 0, 0, 0.5);
+    width:600px;
+    height:600px;
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.loading-spinner{
+    color:white;
+    font-size:2em;
+}
+
+.buttons-group{
+    width:100%;
+   display:grid !important;
+   grid-template-columns: 20% 20% 20% 20% 20%;
+
+
+}
+
+.hidden{
+    visibility: hidden;
+    cursor: default;
+}
+
+.x-button{
+    color:red;
+    font-size:2em;
+    padding-left:15px;
+    cursor:pointer;
+}
+.copy-icon{
+    font-size:1.5em;
+}
+.rotate{
+    transform:rotate(180deg)
+}
+.flip-icon{
+    font-size:1.5em;
+    cursor: pointer;
+    margin-left:20px
+}
+.clocks{
+    margin-left:0px !important;
+    background:#282829;
+    box-sizing: border-box;
+    padding-top:2px;
+    padding-bottom:2px;
+}
+li{
+    font-size:0.9em;
+}
+
+
+#blackclock{
+    font-size:2em;
+}
+#whiteclock{
+    font-size:2em;
+}
+
+#modaldraw{
+  display:none;
+}
+
+#controls-column{
+min-width:250px !important;
+z-index:1;
+}
+#gameboard-column{
+z-index:2;
+}
+
+
+
